@@ -40,13 +40,15 @@ func TestParse(t *testing.T) {
 		<body>Don't forget the meeting!</body>
 	</note>
     `
-    doc, err := ParseString(input)
+    doc := New()
+    err := doc.ParseString(input)
+    root := doc.Root
     assert.Equal(t, err, nil)
     assert.NotEqual(t, doc, nil)
-    assert.Equal(t, doc.Name, "note")
-    assert.Equal(t, strings.TrimSpace(doc.Value), "")
-    assert.Equal(t, len(doc.Childs), 4)
-    assert.Equal(t, len(doc.Attrs), 0)
+    assert.Equal(t, root.Name, "note")
+    assert.Equal(t, strings.TrimSpace(root.Value), "")
+    assert.Equal(t, len(root.Childs), 4)
+    assert.Equal(t, len(root.Attrs), 0)
     
     println(doc.ToString())
 }
