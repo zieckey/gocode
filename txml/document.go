@@ -90,6 +90,14 @@ func (doc *Document) ParseString(xmlstr string) (err error) {
 }
 
 func (doc *Document) ToString() string {
+	return doc.toPrettyString(0)
+}
+
+func (doc *Document) ToPrettyString() string {
+	return doc.toPrettyString(4)
+}
+
+func (doc *Document) toPrettyString(indent int) string {	
 	var buf bytes.Buffer
 	buf.Write([]byte("<?"))
 	if len(doc.ProcInst.Target) > 0 {
@@ -104,6 +112,6 @@ func (doc *Document) ToString() string {
 		buf.Write([]byte("version=\"1.0\" encoding=\"utf-8\""))
 	}
 	buf.Write([]byte("?>\n"))
-	doc.Root.Write(&buf)
+	doc.Root.Write(&buf, indent)
 	return buf.String()
 }
