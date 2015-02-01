@@ -43,7 +43,7 @@ func (doc *Document) Parse(r io.Reader) (err error) {
 			if doc.Root == nil {
 				doc.Root = el
 			} else {
-				current.Childs[el.Name] = append(current.Childs[el.Name], el)
+				current.Children[el.Name] = append(current.Children[el.Name], el)
 				el.Parent = current
 			}
 			current = el

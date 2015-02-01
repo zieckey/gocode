@@ -47,7 +47,7 @@ func TestParse(t *testing.T) {
     assert.NotEqual(t, doc, nil)
     assert.Equal(t, root.Name, "note")
     assert.Equal(t, strings.TrimSpace(root.Value), "")
-    assert.Equal(t, len(root.Childs), 4)
+    assert.Equal(t, len(root.Children), 4)
     assert.Equal(t, len(root.Attrs), 0)
     
     println(doc.ToString())
