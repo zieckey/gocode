@@ -99,6 +99,18 @@ func (e *Element) Write(w io.Writer, indent int) {
 //	e.Attrs[name] = value
 //}
 
+// FindFirst finds the fist Element with the selector
+// selector can be splitted by " " or "/"
+func (e *Element) FindFirst(selector string) *Element {
+	names := strings.FieldsFunc(selector, selectorSatisfy)
+	es := e.findAll(names)
+	if len(es) > 0 {
+		return es[0]
+	}
+
+	return nil
+}
+
 // FindAll recursively finds all the Element with the selector
 // selector can be splitted by " " or "/"
 func (e *Element) FindAll(selector string) ElementArray {

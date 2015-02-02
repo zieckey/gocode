@@ -129,4 +129,18 @@ func TestParse(t *testing.T) {
 	assert.Equal(t, es[0].Name, "from")
 	assert.Equal(t, es[0].Value, "John")
 	println(es[0].ToString())
+
+	// Test FindFirst
+	e := root.FindFirst("note/from")
+	assert.Equal(t, e.Name, "from")
+	assert.Equal(t, e.Value, "John")
+	println(e.ToString())
+
+	e = root.FindFirst("note to")
+	assert.Equal(t, e.Name, "to")
+	assert.Equal(t, e.Value, "George")
+	println(e.ToString())
+
+	e = root.FindFirst("note tooo")
+	assert.Equal(t, e, (*Element)(nil))
 }
