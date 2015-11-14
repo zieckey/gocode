@@ -22,8 +22,20 @@ func New() *Document {
 }
 
 func (doc *Document) Parse(r io.Reader) (err error) {
-	var current *Element
 	decoder := xml.NewDecoder(r)
+	return doc.ParseWithXmlDecoder(decoder)
+}
+
+func (doc *Document) ParseHTML(r io.Reader) (err error) {
+	decoder := xml.NewDecoder(r)
+	decoder.Strict = false
+	decoder.AutoClose = xml.HTMLAutoClose
+	decoder.Entity = xml.HTMLEntity
+	return doc.ParseWithXmlDecoder(decoder)
+}
+
+func (doc *Document) ParseWithXmlDecoder(decoder *xml.Decoder) (err error) {
+	var current *Element
 	for {
 		t, err := decoder.Token()
 		if err == io.EOF {
@@ -97,7 +109,7 @@ func (doc *Document) ToPrettyString() string {
 	return doc.toPrettyString(4)
 }
 
-func (doc *Document) toPrettyString(indent int) string {	
+func (doc *Document) toPrettyString(indent int) string {
 	var buf bytes.Buffer
 	buf.Write([]byte("<?"))
 	if len(doc.ProcInst.Target) > 0 {

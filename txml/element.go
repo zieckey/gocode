@@ -13,14 +13,13 @@ type ElementArray []*Element
 
 // Element is a Node of the XML document
 type Element struct {
-	// XML exmaple : <Name Attr1="Attr1 Value" Attr2="Attr2 Value">Value</Name>
+	// XML exmaple : <Name Attr1="Attr1 Value" Attr2="Attr2 Value"><Children>Value</Children><Children>Value2</Children></Name>
 
 	Name     string
 	Value    string
 	Attrs    map[string]string       // The attributes of this Node
 	Children map[string]ElementArray // The children of this Node
 	Parent   *Element
-	//Root *Element
 }
 
 func NewElement() *Element {
