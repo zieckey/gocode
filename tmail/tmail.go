@@ -6,6 +6,7 @@ import (
 	"runtime"
 )
 
+// SendMail sends an email to the addresses using 'mail' command on *nux platform.
 func SendMail(title, message string, email ...string) error {
 	if runtime.GOOS == "windows" {
 		log.Printf("TODO: cannot send email on windows title=[%v] messagebody=[%v]", title, message)
