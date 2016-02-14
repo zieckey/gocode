@@ -1,4 +1,4 @@
-package strings
+package tstrings
 
 // RemoveIf removes all elements satisfying specific criteria and returns a new string
 func RemoveIf(s string, f func(rune) bool) string {
