@@ -2,6 +2,6 @@
 
 There are some commonly used functions for the Go programming language. As follows:
 
-- tstrings : Additional string utility functions like RemoveIf
-- tmail : Send mail simply
-- txml : A dom XML parser
+- tstrings : Some utility functions to manipulate string like RemoveIf
+- tmail : Send en email simply
+- txml : A DOM (Document Object Model) XML parser
